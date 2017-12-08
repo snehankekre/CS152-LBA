@@ -18,6 +18,7 @@ import PlacesRoomService from 'material-ui/svg-icons/places/room-service';
 import PriceSlider from './PriceSlider';
 import DistanceSlider from './DistanceSlider';
 import ChipAutofill from './ChipAutofill';
+import recommend from './recommend';
 
 const cuisinesDataSource = [
     'Japanese',
@@ -78,7 +79,8 @@ class DiningRecommender extends Component {
       price: 3000,
       cuisines: [],
       languages: [],
-      restrictions: []
+      restrictions: [],
+      recommendation: ''
     };
   }
 
@@ -147,6 +149,21 @@ class DiningRecommender extends Component {
     });
   }
 
+  handleSubmit = (e) => {
+    // { price, distance, cuisines, restrictions, languages } = {...this.state};
+    let recommendation = recommend(
+      this.state.price,
+      this.state.distance,
+      this.state.languages,
+      this.state.cuisines,
+      this.state.restrictions
+    );
+    this.setState({
+      stepIndex: this.state.stepIndex + 1,
+      recommendation
+    });
+  }
+
   renderStepActions(step) {
     return (
       <div style={{margin: '0px 0px 12px 0px'}}>
@@ -157,15 +174,15 @@ class DiningRecommender extends Component {
           disableFocusRipple={true}
           onClick={this.handlePrev}
         />
-        <RaisedButton
+        {this.state.stepIndex !== 5 ? <RaisedButton
           label={this.state.stepIndex < 4 ? "Next" : "Done"}
           icon={this.state.stepIndex < 4 ? '' : <PlacesRoomService />}
           disableTouchRipple={true}
           disableFocusRipple={true}
           primary={true}
-          onClick={this.handleNext}
+          onClick={this.state.stepIndex < 4 ? this.handleNext : this.handleSubmit}
           style={{marginLeft: 12}}
-        />
+        /> : null}
       </div>
     );
   }
@@ -312,6 +329,35 @@ class DiningRecommender extends Component {
               {this.renderStepActions(4)}
             </StepContent>
           </Step>
+          {this.state.stepIndex === 5 ? (<Step>
+            <StepButton
+              icon={
+                <PlacesRoomService
+                  color={
+                    this.state.stepIndex === 5 ?
+                    this.props.muiTheme.palette.primary1Color :
+                    this.props.muiTheme.palette.disabledColor
+                  }
+                />
+               }
+              onClick={() => this.setState({stepIndex: 5})}
+            >
+              Restaurant Recommendations
+            </StepButton>
+            <StepContent>
+              <p
+                style={{
+                  fontFamily: 'Roboto, sans-serif',
+                  fontSize: 14,
+                  color: this.props.muiTheme.palette.accent1Color,
+                  marginLeft: 12
+                }}
+              >
+                You should go to <b>{this.state.recommendation}</b>.
+              </p>
+              {this.renderStepActions(5)}
+            </StepContent>
+          </Step>) : null}
         </Stepper>
       </div>
     );
