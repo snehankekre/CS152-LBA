@@ -224,7 +224,7 @@ class DiningRecommender extends Component {
               <ChipAutofill
                 values={this.state.languages}
                 floatingLabelText={'Menu Languages'}
-                hintText={'Start typing comma-separated languages...'}
+                hintText={'Type a language and hit enter...'}
                 errorText={'Please enter an available language'}
                 dataSource={languagesDataSource}
                 onRequestAddValue={this.handleRequestAddLanguage}
@@ -275,7 +275,7 @@ class DiningRecommender extends Component {
               <ChipAutofill
                 values={this.state.cuisines}
                 floatingLabelText={'Cuisines'}
-                hintText={'Start typing comma-separated cuisines...'}
+                hintText={'Type a cuisine and hit enter...'}
                 errorText={'Please enter an available cuisine'}
                 dataSource={cuisinesDataSource}
                 onRequestAddValue={this.handleRequestAddCuisine}
@@ -303,7 +303,7 @@ class DiningRecommender extends Component {
               <ChipAutofill
                 values={this.state.restrictions}
                 floatingLabelText={'Dietary Restrictions'}
-                hintText={'Start typing comma-separated dietary restrictions...'}
+                hintText={'Type a dietary restriction and hit enter...'}
                 errorText={'Please enter an available dietary restriction'}
                 dataSource={restrictionsDataSource}
                 onRequestAddValue={this.handleRequestAddRestriction}
