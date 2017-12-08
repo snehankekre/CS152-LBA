@@ -195,7 +195,7 @@ class DiningRecommender extends Component {
               }
               onClick={() => this.setState({stepIndex: 0})}
             >
-              What's your budget (in multiples of ₩1,000)?
+              What's your budget?
             </StepButton>
             <StepContent>
               <PriceSlider
