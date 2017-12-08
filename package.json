@@ -1,16 +1,29 @@
 {
   "name": "cs152-lba",
   "version": "0.1.0",
+  "homepage": "https://jdecked.github.io/CS152-LBA",
   "private": true,
   "dependencies": {
+    "material-ui": "^0.20.0",
+    "material-ui-chip-input": "^0.18.3",
+    "material-ui-slider-label": "git+https://github.com/tariqwest/material-ui-slider-label.git",
+    "prop-types": "^15.6.0",
+    "rc-slider": "^8.5.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "react-swipeable-views": "^0.12.12",
+    "typeface-roboto": "0.0.45"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.1.0"
   }
 }
