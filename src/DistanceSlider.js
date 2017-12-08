@@ -49,14 +49,17 @@ class DistanceSlider extends Component {
     let icon = this.props.distance > 2 ?
       (this.props.distance > 15 ?
         <MapsDirectionsCar
+          className={'optionalIcon'}
           color={this.props.muiTheme.palette.accent2Color}
           style={styles.icon}
         /> :
         <MapsDirectionsTransit
+          className={'optionalIcon'}
           color={this.props.muiTheme.palette.accent2Color}
           style={styles.icon}
         />) :
       <MapsDirectionsWalk
+        className={'optionalIcon'}
         color={this.props.muiTheme.palette.accent2Color}
         style={styles.icon}
       />

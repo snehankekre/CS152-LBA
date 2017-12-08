@@ -5,7 +5,7 @@ import SwipeableViews from 'react-swipeable-views';
 
 import SocialPeople from 'material-ui/svg-icons/social/people';
 import MapsLocalDining from 'material-ui/svg-icons/maps/local-dining';
-import CommunicationForum from 'material-ui/svg-icons/communication/forum';
+import CommunicationLiveHelp from 'material-ui/svg-icons/communication/live-help';
 
 import About from './About';
 import Contact from './Contact';
@@ -39,7 +39,7 @@ class Header extends Component {
         >
           <Tab style={{height: "64px"}} value={0} icon={<MapsLocalDining />} />
           <Tab style={{height: "64px"}} value={1} icon={<SocialPeople />} />
-          <Tab style={{height: "64px"}} value={2} icon={<CommunicationForum />} />
+          <Tab style={{height: "64px"}} value={2} icon={<CommunicationLiveHelp />} />
         </Tabs>
         <SwipeableViews
           index={this.state.activeTabIndex}

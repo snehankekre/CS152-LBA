@@ -33,7 +33,7 @@ export default class ChipAutofill extends Component {
 
   render() {
     return (
-      <div style={{display: 'inline-block', position: 'relative', width: '70%', margin: '24px 0px 36px 24px'}}>
+      <div style={{display: 'inline-block', position: 'relative', width: '100%', margin: '24px 0px 36px 24px'}}>
         <ChipInput
           value={this.props.values}
           onBeforeRequestAdd={this.handleBeforeRequestAdd}
@@ -42,12 +42,17 @@ export default class ChipAutofill extends Component {
           onBlur={this.handleBlur}
           floatingLabelText={this.props.floatingLabelText}
           hintText={this.props.hintText}
-          errorText={this.state.error ? this.props.errorText : null}
+          errorText={
+            (this.props.values.length === 0 ||
+            this.state.error) &&
+            this.props.floatingLabelText !== 'Dietary Restrictions' ?
+              this.props.errorText : null
+          }
           filter={AutoComplete.fuzzyFilter}
           dataSource={this.props.dataSource}
           maxSearchResults={5}
           newChipKeyCodes={[13, 188]}
-          style={{minWidth: '50vw'}}
+          style={{minWidth: '50vw', width: '90%'}}
           ref={(input) => { this.textInput = input; }}
         />
       </div>

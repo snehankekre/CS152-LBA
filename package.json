@@ -27,6 +27,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "jsprolog": "^0.2.2",
     "material-ui": "^0.20.0",
     "material-ui-chip-input": "^0.18.3",
     "material-ui-slider-label": "git+https://github.com/tariqwest/material-ui-slider-label.git",
@@ -50,6 +51,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
+    "postinstall": "scripts/postinstall",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -57,8 +59,7 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^1.1.0",
-    "webpack-bundle-tracker": "^0.2.0"
+    "gh-pages": "^1.1.0"
   },
   "jest": {
     "collectCoverageFrom": [

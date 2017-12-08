@@ -48,12 +48,12 @@ class PriceSlider extends Component {
     let icon = (
       <div style={styles.icons}>
         <FontIcon
-          className="fa fa-krw"
+          className="fa fa-krw optionalIcon"
           color={this.props.muiTheme.palette.primary1Color}
           style={styles.icon}
         />
         <FontIcon
-          className="fa fa-krw"
+          className="fa fa-krw optionalIcon"
           color={
             this.props.price > 10000 ?
             this.props.muiTheme.palette.primary1Color :
@@ -62,7 +62,7 @@ class PriceSlider extends Component {
           style={styles.icon}
         />
         <FontIcon
-          className="fa fa-krw"
+          className="fa fa-krw optionalIcon"
           color={
             this.props.price > 15000 ?
             this.props.muiTheme.palette.primary1Color :
@@ -71,7 +71,7 @@ class PriceSlider extends Component {
           style={styles.icon}
         />
         <FontIcon
-          className="fa fa-krw"
+          className="fa fa-krw optionalIcon"
           color={
             this.props.price > 30000 ?
             this.props.muiTheme.palette.primary1Color :
@@ -80,7 +80,7 @@ class PriceSlider extends Component {
           style={styles.icon}
         />
         <FontIcon
-          className="fa fa-krw"
+          className="fa fa-krw optionalIcon"
           color={
             this.props.price > 70000 ?
             this.props.muiTheme.palette.primary1Color :

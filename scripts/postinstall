@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+rm -r node_modules
+yarn install
+
+# I edited the material-ui package to include Sliders with tooltips
+# so let's copy the edit over
+cp src/package_edits/Slider.js node_modules/material-ui/Slider/Slider.js

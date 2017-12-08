@@ -8,7 +8,7 @@ const styles = {
     fontSize: 24,
     paddingTop: 16,
     marginBottom: 12,
-    marginLeft: 156,
+    marginLeft: '8.125vw',
     marginRight: 48,
     fontWeight: 400,
   },
@@ -17,17 +17,17 @@ const styles = {
     alignSelf: 'center',
     marginBottom: 12,
     marginTop: 12,
-    flexGrow: 1
+    flexGrow: 0.5,
+    height: 125
   },
   paragraph: {
-    margin: '12px 156px',
+    margin: '12px 8.125vw',
     fontWeight: 300,
     fontSize: 23
   },
   container: {
     display: 'flex',
-    flexDirection: 'column',
-    height: '23vw'
+    flexDirection: 'column'
   }
 };
 

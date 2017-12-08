@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {indigo500, grey300, grey600, grey800, cyanA400} from 'material-ui/styles/colors';
-import './App.css';
 import Header from './Header';
-
-// accessibility by public transport - not implemented
 
 const muiTheme = getMuiTheme({
   palette: {

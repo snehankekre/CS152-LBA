@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Avatar from 'material-ui/Avatar';
+import FontIcon from 'material-ui/FontIcon';
+import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 
@@ -8,21 +9,9 @@ const styles = {
     fontSize: 24,
     paddingTop: 16,
     marginBottom: 12,
-    marginLeft: 156,
+    marginLeft: '8.125vw',
     marginRight: 48,
     fontWeight: 400,
-  },
-  avatars: {
-    display: 'flex',
-    alignSelf: 'center',
-    marginBottom: 12,
-    marginTop: 12,
-    flexGrow: 1
-  },
-  paragraph: {
-    margin: '12px 156px',
-    fontWeight: 300,
-    fontSize: 23
   },
   container: {
     display: 'flex',
@@ -36,32 +25,34 @@ export default class About extends Component {
     return (
       <div style={styles.container}>
         <h2 style={styles.headline}>Found a bug? Have your own food recommendations? Contact us!</h2>
-        
-        <List style={styles.avatars}>
-          <ListItem
-            disabled={true}
-            leftAvatar={
-              <Avatar src="images/justine.jpg" size={100} />
-            }
-          />
-          <ListItem
-            disabled={true}
-            leftAvatar={
-              <Avatar src="images/snehan.jpg" size={100} />
-            }
-          />
-          <ListItem
-            disabled={true}
-            leftAvatar={
-              <Avatar src="images/yoel.jpg" size={100} />
-            }
-          />
+        <List className={'contactContent'}>
+          <a
+            href="https://github.com/jdecked/CS152-LBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{textDecoration: 'none'}}
+          >
+            <ListItem
+              leftIcon={
+                <FontIcon className="muidocs-icon-custom-github" />
+              }
+              primaryText={'https://github.com/jdecked/CS152-LBA'}
+            />
+          </a>
+          <a
+            href="mailto:justine@minerva.kgi.edu"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{textDecoration: 'none'}}
+          >
+            <ListItem
+              leftIcon={
+                <CommunicationEmail />
+              }
+              primaryText={'justine@minerva.kgi.edu'}
+            />
+          </a>
         </List>
-        <p style={styles.paragraph}>
-          ...endured astronomical gastronomical confusion at the hands of Seoul
-          (and were inspired by the location-based assignment for CS152,
-          a course taken by third-years at the Minerva Schools).
-        </p>
       </div>
     );
   }

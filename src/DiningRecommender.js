@@ -73,21 +73,40 @@ const languagesDataSource = [
 class DiningRecommender extends Component {
   constructor(props) {
     super(props);
+    this.required = [0, 1, 2, 3]
     this.state = {
-      stepIndex: 0,
-      distance: 1.5,
       price: 3000,
+      distance: 1.5,
       cuisines: [],
       languages: [],
       restrictions: [],
-      recommendation: ''
+      stepIndex: 0,
+      recommendations: []
     };
+
+    this.styles = {
+      recommendations: {
+        fontFamily: 'Roboto, sans-serif',
+        fontSize: 14,
+        color: this.props.muiTheme.palette.accent1Color,
+        margin: '24px 0px 36px 24px'
+      }
+    }
   }
 
   handleNext = () => {
     const {stepIndex} = this.state;
-    if (stepIndex < 4) {
-      this.setState({stepIndex: stepIndex + 1});
+    const requiredValues = [
+      this.state.price,
+      this.state.languages.length,
+      this.state.distance,
+      this.state.cuisines.length
+    ];
+
+    if (stepIndex < 4 && requiredValues[stepIndex] > 0) {
+      this.setState({
+        stepIndex: stepIndex + 1
+      });
     }
   };
 
@@ -150,17 +169,26 @@ class DiningRecommender extends Component {
   }
 
   handleSubmit = (e) => {
-    // { price, distance, cuisines, restrictions, languages } = {...this.state};
-    let recommendation = recommend(
-      this.state.price,
-      this.state.distance,
-      this.state.languages,
-      this.state.cuisines,
-      this.state.restrictions
+    const {
+      price,
+      distance,
+      cuisines,
+      languages,
+      restrictions,
+      ...rest
+    } = this.state;
+
+    let recommendations = recommend(
+      price/1000,
+      distance,
+      languages,
+      cuisines,
+      restrictions
     );
+
     this.setState({
       stepIndex: this.state.stepIndex + 1,
-      recommendation
+      recommendations
     });
   }
 
@@ -191,10 +219,12 @@ class DiningRecommender extends Component {
     const {stepIndex} = this.state;
 
     return (
-      <div style={{marginLeft: '5vw', maxWidth: '90vw', height: 800}}>
+      <div
+        className={'diningRecommender'}
+        style={{maxWidth: '100vw', maxHeight: '100vh'}}
+      >
         <Stepper
           activeStep={stepIndex}
-          linear={false}
           orientation="vertical"
           fullWidth
         >
@@ -214,7 +244,7 @@ class DiningRecommender extends Component {
             >
               What's your budget?
             </StepButton>
-            <StepContent>
+            <StepContent className={'stepContent'}>
               <PriceSlider
                 price={this.state.price}
                 onPriceChange={this.handlePriceChange}
@@ -237,7 +267,7 @@ class DiningRecommender extends Component {
             >
               What languages can the menu be available in?
             </StepButton>
-            <StepContent>
+            <StepContent className={'stepContent'}>
               <ChipAutofill
                 values={this.state.languages}
                 floatingLabelText={'Menu Languages'}
@@ -265,7 +295,7 @@ class DiningRecommender extends Component {
             >
               How far are you willing to go (in km)?
             </StepButton>
-            <StepContent>
+            <StepContent className={'stepContent'}>
               <DistanceSlider
                 distance={this.state.distance}
                 onDistanceChange={this.handleDistanceChange}
@@ -288,7 +318,7 @@ class DiningRecommender extends Component {
             >
               Which cuisines are you in the mood for?
             </StepButton>
-            <StepContent>
+            <StepContent className={'stepContent'}>
               <ChipAutofill
                 values={this.state.cuisines}
                 floatingLabelText={'Cuisines'}
@@ -316,7 +346,7 @@ class DiningRecommender extends Component {
             >
               Do you have any dietary restrictions?
             </StepButton>
-            <StepContent>
+            <StepContent className={'stepContent'}>
               <ChipAutofill
                 values={this.state.restrictions}
                 floatingLabelText={'Dietary Restrictions'}
@@ -344,17 +374,26 @@ class DiningRecommender extends Component {
             >
               Restaurant Recommendations
             </StepButton>
-            <StepContent>
-              <p
-                style={{
-                  fontFamily: 'Roboto, sans-serif',
-                  fontSize: 14,
-                  color: this.props.muiTheme.palette.accent1Color,
-                  marginLeft: 12
-                }}
-              >
-                You should go to <b>{this.state.recommendation}</b>.
-              </p>
+            <StepContent className={'stepContent'}>
+              {this.state.recommendations.length > 0 ? (
+                <div style={this.styles.recommendations}>
+                  You should check out the following places which match your criteria:
+                  {this.state.recommendations.map(
+                    (recommendation) => {
+                      return (
+                        <div style={{marginLeft: 24}} key={recommendation}>
+                          <br />- <b>{recommendation}</b>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+                ) : (
+                  <div style={this.styles.recommendations}>
+                    Sorry! No places matched your criteria. Better luck next time. :(
+                  </div>
+                )
+              }
               {this.renderStepActions(5)}
             </StepContent>
           </Step>) : null}
